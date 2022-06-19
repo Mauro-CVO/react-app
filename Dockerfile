@@ -1,17 +1,7 @@
-# build env
-FROM node:current-alpine
-#FROM node:14.17.3-buster
+FROM node:alpine
 WORKDIR /app
-
-#ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
-#COPY package-lock.json ./
-RUN npm install
-COPY . .
-
-CMD ["npm", "start"]
-# production env
-#FROM nginx:stable-alpine
-#COPY --from=build /app/build /usr/share/nginx/html
-#EXPOSE 80
-#CMD ["nginx", "-g", "daemon off;"]
+COPY package-lock.json ./
+COPY ./ ./
+RUN npm i
+CMD ["npm", "run", "start"]
