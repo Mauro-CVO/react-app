@@ -8,7 +8,7 @@
 
 # #############################   Stage 0, Build the app   #####################
 # pull official base image
-FROM node:13.12.0-alpine as build-stage
+FROM node:13.12.0-alpine as build
 # set working directory
 WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
@@ -22,13 +22,14 @@ RUN npm install
 COPY . ./
 
 #build for production
-RUN npm run-script build
+RUN npm run build
 
 # #### Stage 1, push the compressed  built app into nginx ####
-FROM nginx:1.17
+FROM nginx:1.19.0-alpine AS prod-stage
 
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
-
+COPY --from=build /app/build/ /usr/share/nginx/html
+EXPOSE 80
+#CMD ["nginx", "-g", "daemon off;"]
 # production env
 #FROM nginx:stable-alpine
 #COPY --from=build /app/build /usr/share/nginx/html
