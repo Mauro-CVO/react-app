@@ -24,7 +24,7 @@ jobs:
     # 设置 docker 环境
     - name: Set up Docker Buildx
       id: buildx
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v2
       
     # build 并且 push docker 镜像
     - name: Build and push
