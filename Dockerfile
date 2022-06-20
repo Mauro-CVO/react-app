@@ -1,10 +1,13 @@
-FROM node:12.18-alpine
-ENV NODE_ENV=production
-ENV PORT=80
+FROM node:16-alpine
 
 WORKDIR /app
-COPY . .
-RUN npm install
-EXPOSE 80
-CMD ["npm", "start"]
 
+COPY . /app
+
+RUN npm install
+
+RUN npm run build
+
+EXPOSE 80
+
+CMD npm run start
