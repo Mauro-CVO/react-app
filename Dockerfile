@@ -4,6 +4,6 @@ ENV PORT=80
 
 WORKDIR /app
 COPY . .
-RUN npm install --silent
+RUN npm install
 EXPOSE 80
 CMD ["npm", "start"]
