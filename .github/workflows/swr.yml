@@ -31,7 +31,7 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v3
       with:
-        #context: ./react-app/
-        #file: Dockerfile
+        context: .
+        file: ./Dockerfile
         push: true
         tags: swr.na-mexico-1.myhuaweicloud.com/cicd-test/test:latest
