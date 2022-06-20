@@ -3,11 +3,11 @@ services:
   app:
     build:
       context: .
-      dockerfile: react-app/Dockerfile
+      dockerfile: app/Dockerfile
     volumes:
       - ./:/app
     ports:
       - "3000:3000"
-    image: app/react
+    image: app/react-image
     container_name: app_container
     command: npm start
